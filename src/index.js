@@ -10,19 +10,24 @@ function jumpingOnClouds(array) {
     // Write your code here
     var totalJumps = 0;
     for (var i = 0; i < array.length; i += 1) {
-        if (array[i] === 0) {
+        if ((i + 1 <= array.length && array[i + 1] !== 1) ||
+            (i + 2 <= array.length && array[i + 2] !== 1)) {
             totalJumps++;
-        }
-        else {
-            if (i + 1 <= array.length && array[i + 1] === 0) {
-                //totalJumps++;
-                i++;
-            }
+            i++;
         }
     }
     return totalJumps;
 }
 consoleBuffer();
+// 4
 console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]));
+// 3
 console.log(jumpingOnClouds([0, 0, 0, 0, 1, 0]));
+// 46
+console.log(jumpingOnClouds([
+    0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
+    0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,
+    0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
+]));
 consoleBuffer();
