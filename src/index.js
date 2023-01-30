@@ -5,6 +5,7 @@ var consoleStart = function () {
     console.log('');
 };
 var consoleEnd = function () {
+    console.log('\x1b[33m', 'End of test cases...');
     console.log('\x1b[37m', '');
     console.log('');
 };
@@ -20,7 +21,7 @@ var formatOutput = function (fxn, answer) {
         console.log('\x1b[32m', 'CORRECT :: ' + output + ' === ' + answer);
     }
     else {
-        console.log('\x1b[31m', 'WRONG :: ' + output + ' === ' + answer);
+        console.log('\x1b[31m', 'WRONG -> Output was ' + output + ', expected ' + answer);
     }
     console.log();
 };
@@ -34,6 +35,26 @@ function jumpingOnClouds(array) {
         }
     }
     return totalJumps;
+}
+function jumpingOnCloudsRecursion(array) {
+    // Write your code here
+    if (array.length === 0) {
+        return 0;
+    }
+    else if (array.length === 1) {
+        return 0;
+    }
+    else {
+        if (array[0] === 1) {
+            array.shift();
+            return 1 + jumpingOnCloudsRecursion(array);
+        }
+        else {
+            array.shift();
+            array.shift();
+            return 1 + jumpingOnCloudsRecursion(array);
+        }
+    }
 }
 consoleStart();
 formatOutput(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]), 4);
@@ -51,6 +72,13 @@ formatOutput(jumpingOnClouds([
     0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,
     0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
 ]), 46);
-formatOutput(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]), 5);
+// =================================
+formatOutput(jumpingOnCloudsRecursion([0, 0, 0, 0, 1, 0]), 3);
+formatOutput(jumpingOnCloudsRecursion([
+    0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
+    0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,
+    0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
+]), 46);
 consoleEnd();
 consoleBuffer();
