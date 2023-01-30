@@ -1,10 +1,32 @@
+const consoleStart = () => {
+    console.log('\x1b[33m', 'Running test cases...');
+    console.log('');
+};
+
+const consoleEnd = () => {
+    console.log('\x1b[37m', '');
+    console.log('');
+};
+
 const consoleBuffer = () => {
     console.log('--------------------------');
     console.log('--------------------------');
     console.log('\n');
 };
 
-const dragon = { color: 'red', temperment: 'spicy', mass: 100 };
+const formatOutput = (fxn: any, answer: any) => {
+    const output = fxn;
+
+    console.log('\x1b[36m%s\x1b[0m', 'Testing function...');
+
+    if (output === answer) {
+        console.log('\x1b[32m', 'CORRECT :: ' + output + ' === ' + answer);
+    } else {
+        console.log('\x1b[31m', 'WRONG :: ' + output + ' === ' + answer);
+    }
+
+    console.log();
+};
 
 function jumpingOnClouds(array: number[]) {
     // Write your code here
@@ -14,7 +36,6 @@ function jumpingOnClouds(array: number[]) {
         totalJumps++;
 
         if (i + 2 < array.length && array[i + 2] !== 1) {
-            //i++;
             i++;
         }
     }
@@ -22,34 +43,35 @@ function jumpingOnClouds(array: number[]) {
     return totalJumps;
 }
 
-consoleBuffer();
+consoleStart();
 
-// 4
-console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]));
+formatOutput(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]), 4);
+formatOutput(jumpingOnClouds([0, 0, 0, 0, 1, 0]), 3);
 
-// 3
-console.log(jumpingOnClouds([0, 0, 0, 0, 1, 0]));
-
-//53
-console.log(
+formatOutput(
     jumpingOnClouds([
         0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1,
         0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1,
         0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
         1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
         1, 0, 0, 0,
-    ])
+    ]),
+    53
 );
 
-// 46
-console.log(
+formatOutput(
     jumpingOnClouds([
         0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
         0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0,
         0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,
         0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0,
-    ])
+    ]),
+    46
 );
+
+formatOutput(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]), 5);
+
+consoleEnd();
 
 consoleBuffer();
 
